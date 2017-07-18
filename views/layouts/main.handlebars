@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Meadowlark Travel</title>
+
+        {{!handlebars context code}}
+        {{{_sections.head}}}
+
+        {{!Sets up the mocha tests}}
+        {{#if showTests}}
+            <link rel="stylesheet" href="/vendor/mocha.css">
+        {{/if}}
+
+        <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+
+        <script src="/vendor/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <header><a href="../"><img src="/img/logo.png" alt="Meadowlark Travel Logo"></a></header>
+
+        {{#if flash}}
+            <div class="alert alert-dismissible alert-{{flash.type}}">
+                <button type="button" class="close" data-dismiss='alert'
+                        aria-hidden='true'>&times;</button>
+                <strong>{{flash.intro}}</strong> {{{flash.message}}}
+            </div>
+        {{/if}}
+
+        <nav>
+            <ul style="list-style-type:none">
+                <li><a href="../about">About</a></li>
+                <li>Tours</li>
+                <ul style="list-style-type:none">
+                    <li><a href="../tours/hood-river">Hood-River</a></li>
+                    <li><a href="../tours/oregon-coast">Oregon-Coast</a></li>
+                    <li><a href="../tours/tours-info">Tours Info</a></li>
+                </ul>
+                <li><a href="../jquery-test">jQuery Test</a></li>
+                <li><a href="../health">Health Check</a></li>
+                <li><a href="../nursery-rhyme">Nursery-Rhyme</a></li>
+                <li><a href="../newsletter">Newsletter</a></li>
+                <li><a href="../vacations">Vacations</a></li>
+                <li><a href="../contest/vacation-photo">Vacation-Photo Upload</a></li>
+            </ul>
+        </nav>
+        <main>
+            {{!handlebars context code}}
+            {{{body}}}
+        </main>
+
+
+        <hr id='noFloat'>
+        <footer>
+            <br>
+            <small>&copy; {{copyrightYear}} Meadowlark Travel</small>
+        </footer>
+
+
+
+        <script>window.jQuery || document.write('<script src="/vendor/js/jquery-2.1.1.min.js"><\/script>')</script>
+        {{{_sections.jquery}}}
+
+        {{!Sets up the mocha tests}}
+        {{#if showTests}}
+            <div id="mocha"></div>
+            <script src="/vendor/mocha.js"></script>
+            <script src="/vendor/chai.js"></script>
+
+            <script>
+                mocha.ui('tdd');
+                var assert = chai.assert;
+            </script>
+
+            <script src="/qa/tests-global.js"></script>
+
+            {{#if pageTestScript}}
+                <script src="{{pageTestScript}}"></script>
+            {{/if}}
+
+            <script>mocha.run();</script>
+        {{/if}}
+
+        <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>
